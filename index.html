@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Personal Website</title>
+<link rel="stylesheet" href="style2.css">
+</head>
+<script>
+function openModal(id) {
+    document.getElementById(id).style.display = "block";
+}
+
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+// Close when clicking outside modal
+window.onclick = function(event) {
+    let modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+}
+</script>
+<body>
+
+<header>
+    <h1>Our Personal Website</h1>
+    <p>Welcome to our group page</p>
+</header>
+
+<nav>
+    <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+
+        <li>
+            <a href="#">Members</a>
+            <ul class="submenu">
+                <li><a href="jane.html">Mary Jane Cabatingan</a></li>
+                <li><a href="rhian.html">Rhian Joyce Villaceran</a></li>
+                <li><a href="darwin.html">Darwin Labador</a></li>
+                <li><a href="cyrus.html">Cyrus Balmedina</a></li>
+                <li><a href="jhanna.html">Jhanna Rhian Sablon</a></li>
+            </ul>
+        </li>
+
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contacts.html">Contact</a></li>
+    </ul>
+</nav>
+<div class="content">
+<div class="card" onclick="openModal('janeModal')">
+    <img src="Photos/jane.jpg">
+    <h3>Mary Jane Cabatingan</h3>
+</div>
+
+<div class="card" onclick="openModal('rhianModal')">
+    <img src="Photos/rhian.jpg">
+    <h3>Rhian Joyce Villaceran</h3>
+</div>
+
+<div class="card" onclick="openModal('darwinModal')">
+    <img src="Photos/darwin.jpg">
+    <h3>Darwin Labador</h3>
+</div>
+
+<div class="card" onclick="openModal('cyrusModal')">
+    <img src="Photos/cyrus.jpg">
+    <h3>Cyrus Balmedina</h3>
+</div>
+
+<div class="card" onclick="openModal('jhannaModal')">
+    <img src="Photos/jhanna.jpg">
+    <h3>Jhanna Rhian Sablon</h3>
+</div>
+</div>
+
+<!-- MODAL TEMPLATE -->
+
+<div id="janeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('janeModal')">&times;</span>
+    <img src="Photos/babyjane.jpg">
+    <h2>Mary Jane Cabatingan</h2>
+    <p>My name is Mary Jane Cabatingan, a 19-year-old student and currently living in Tunasan, Muntinlupa City. I was born on November 21, 2006. In my free time, i enjoy reading story books,
+         watching movies, and listening to music. I also love singing, as it allows me to express my emotions and feelings.</p>
+  </div>
+</div>
+
+<div id="rhianModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('rhianModal')">&times;</span>
+    <img src="Photos/babyrhian.jpg">
+    <h2>Rhian Joyce Villaceran</h2>
+    <p>I am 18 years old, born on July 26, 2007, and I live in Marquez Compound, Summitville, Putatan, Muntinlupa City. One of my favorite ways to spend time is by listening to music, which inspires me and helps me relax after a busy day. I enjoy connecting with people and sharing experiences, and I can be reached through my email at villaceranrhianjoyce41@gmail.com
+ or by phone at 0906-501-7800. I value simple moments in life and believe that each day is an opportunity to learn, grow, and enjoy the little things that bring joy.</p>
+  </div>
+</div>
+
+<div id="darwinModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('darwinModal')">&times;</span>
+    <img src="Photos/babydarwin.jpg">
+    <h2>Darwin Labador</h2>
+    <p>My name is Darwin, and I am 23 years old, born on December 10, 2002. I live at Km 23 West Service Road, Arevalo Compound, Alabang, Muntinlupa City. 
+        One of my favorite hobbies is watching movies, which allows me to relax, enjoy different stories, and explore new ideas. 
+        I enjoy spending my free time discovering films of various genres and look forward to experiencing more memorable stories in the future.</p>
+  </div>
+</div>
+
+<div id="cyrusModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('cyrusModal')">&times;</span>
+    <img src="Photos/babycyrus.jpg">
+    <h2>Cyrus Balmedina</h2>
+    <p>My name is Cyrus, and I am 19 years old, born on October 21, 2006. I live at 282 Arandia Street, Tunasan, Muntinlupa City. 
+        One of my favorite hobbies is playing online games, which allows me to have fun, challenge myself, and connect with friends. 
+        I enjoy spending my free time exploring new games and improving my skills, and I look forward to learning and growing in the years ahead.</p>
+  </div>
+</div>
+
+<div id="jhannaModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('jhannaModal')">&times;</span>
+    <img src="Photos/babyjhanna.jpg">
+    <h2>Jhanna Rhian Sablon</h2>
+    <p>My name is Jhanna Rhian C. Sablon, 18 years old, and I live in Putatan, Muntinlupa City. I was born on August 5, 2007.
+         I’m someone who enjoys simple things like watching k-drama, and listening to music. these hobbies help me relax and enjoy life.</p>
+  </div>
+</div>
+
+</body>
+</html>

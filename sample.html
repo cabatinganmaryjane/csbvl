@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gallery</title>
+<link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<header>
+    <h1>Our Personal Website</h1>
+    <p>Gallery</p>
+</header>
+
+<nav>
+    <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li>
+            <a href="#">Members</a>
+            <ul class="submenu">
+                <li><a href="#">Mary Jane Cabatingan</a></li>
+                <li><a href="#">Rhian Joyce Villaceran</a></li>
+                <li><a href="#">Darwin Labador</a></li>
+                <li><a href="#">Cyrus Balmedina</a></li>
+                <li><a href="#">Jhanna Rhian Sablon</a></li>
+            </ul>
+        </li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="gallery-buttons">
+
+    <div class="member">
+        <h2>Mary Jane Cabatingan</h2>
+        <button class="view-photos" data-member="Jane">View Photos</button>
+    </div>
+
+    <div class="member">
+        <h2>Rhian Joyce Villaceran</h2>
+        <button class="view-photos" data-member="rhian">View Photos</button>
+    </div>
+
+    <div class="member">
+        <h2>Darwin Labador</h2>
+        <button class="view-photos" data-member="darwin">View Photos</button>
+    </div>
+
+    <div class="member">
+        <h2>Cyrus Balmedina</h2>
+        <button class="view-photos" data-member="cyrus">View Photos</button>
+    </div>
+
+    <div class="member">
+        <h2>Jhanna Rhian Sablon</h2>
+        <button class="view-photos" data-member="jhanna">View Photos</button>
+    </div>
+
+    <div class="member">
+        <h2>Group Photo</h2>
+        <button class="view-photos" data-member="group">View Photos</button>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modal-img">
+    <div id="caption"></div>
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+</div>
+
+<script>
+    const memberImages = {
+        Jane: [
+            "Photos/Gallery/jane/j1.jpg","Photos/Gallery/jane/j2.jpg","Photos/Gallery/jane/j3.jpg","Photos/Gallery/jane/j4.jpg","Photos/Gallery/jane/j5.jpg"
+        ],
+        rhian: [
+            "Photos/Gallery/rhian/r1.jpg","Photos/Gallery/rhian/r2.jpg","Photos/Gallery/rhian/r3.jpg","Photos/Gallery/rhian/r4.jpg","Photos/Gallery/rhian/r5.jpg"
+        ],
+        darwin: [
+            "Photos/Gallery/darwin/d1.jpg","Photos/Gallery/darwin/d2.jpg","Photos/Gallery/darwin/d3.jpg","Photos/Gallery/darwin/d4.jpg","Photos/Gallery/darwin/d5.jpg"
+        ],
+        cyrus: [
+            "images/cyrus1.jpg","images/cyrus2.jpg","images/cyrus3.jpg","images/cyrus4.jpg","images/cyrus5.jpg"
+        ],
+        jhanna: [
+            "Photos/Gallery/jhanna/jr1.jpg","Photos/Gallery/jhanna/jr2.jpg","Photos/Gallery/jhanna/jr3.jpg","Photos/Gallery/jhanna/jr4.jpg","Photos/Gallery/jhanna/jr5.jpg"
+        ],
+        group: [
+            "images/group.jpg"
+        ]
+    };
+
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const caption = document.getElementById("caption");
+    const closeBtn = document.querySelector(".close");
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+
+    let currentMember = null;
+    let currentIndex = 0;
+    let startX = 0;
+
+    function openModal(member) {
+        currentMember = member;
+        currentIndex = 0;
+        showImage();
+        modal.style.display = "block";
+    }
+
+    function showImage() {
+        const imgs = memberImages[currentMember];
+        modalImg.src = imgs[currentIndex];
+        caption.textContent = `${currentMember} photo ${currentIndex + 1} of ${imgs.length}`;
+    }
+
+    document.querySelectorAll(".view-photos").forEach(btn => {
+        btn.addEventListener("click", () => openModal(btn.dataset.member));
+    });
+
+    closeBtn.addEventListener("click", () => modal.style.display = "none");
+    modal.addEventListener("click", e => { if(e.target === modal) modal.style.display = "none"; });
+
+    nextBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        const imgs = memberImages[currentMember];
+        currentIndex = (currentIndex + 1) % imgs.length;
+        showImage();
+    });
+
+    prevBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        const imgs = memberImages[currentMember];
+        currentIndex = (currentIndex - 1 + imgs.length) % imgs.length;
+        showImage();
+    });
+
+    // Swipe support
+    modalImg.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
+    modalImg.addEventListener("touchend", e => {
+        let endX = e.changedTouches[0].clientX;
+        if(endX - startX > 50) { // swipe right
+            prevBtn.click();
+        } else if(startX - endX > 50) { // swipe left
+            nextBtn.click();
+        }
+    });
+</script>
+
+</body>
+</html>
